@@ -29,3 +29,25 @@ spring:
           predicates:
             - Path=/pay/gateway/info/**              # 断言，路径相匹配的进行路由
 
+        - id: pay_routh3 #pay_routh3
+          uri: lb://cloud-payment-service                #匹配后提供服务的路由地址
+          predicates:
+            - Path=/pay/gateway/filter/**              # 断言，路径相匹配的进行路由
+          filters:
+            - My=
+#            请求头相关操作
+#            - AddRequestHeader=X-Request1,Value1  # 添加请求头kv，若一头含有多参则重写一行设置
+#            - AddRequestHeader=X-Request2,Value2
+#            - RemoveRequestHeader=Key_test      # 删除请求头Key_test
+#            - SetRequestHeader=Key_test, myrequest # 将请求头sec-fetch-mode对应的值修改为Blue-updatebyzzyy
+#            请求参数相关操作
+#            - AddRequestParameter=customerId,9527001 # 新增请求参数Parameter：k ，v（默认值可以被覆盖）
+#            - RemoveRequestParameter=customerName   # 删除url请求参数customerName，你传递过来也是null
+#            增删改回应头
+#            - AddResponseHeader=NewResponseHeader, value # 新增请求k,v
+#            - SetResponseHeader=Date,2099-11-11 # 设置回应头Date值为2099-11-11
+#            - RemoveResponseHeader=Content-Type # 将默认自带Content-Type回应属性删除（导致不能正常解析）
+#            路径相关
+#            - PrefixPath=/pay # 添加路径前缀
+#            - SetPath=/pay/gateway/{segment}  # {segment}表示占位符，写abc也行但要和path中一致path=/{segment}/XX/asdf/asd
+#            - RedirectTo=302, http://localhost:9527 #302表示重定向，  客户端会自动跳转
