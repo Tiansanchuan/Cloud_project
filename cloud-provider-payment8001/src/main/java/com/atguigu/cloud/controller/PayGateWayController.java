@@ -54,6 +54,9 @@ public class PayGateWayController
             String[] values = request.getParameterValues(name);//一个参数可以有多个值  url?tag=1&tag=2
             System.out.println("request Parameter " + name + ": " + java.util.Arrays.toString(values));
         }
+
+        String header=request.getHeader("userid");
+
 //        System.out.println("=============================================");
 //        String customerId = request.getParameter("customerId");
 //        System.out.println("request Parameter customerId: "+customerId);
@@ -61,6 +64,7 @@ public class PayGateWayController
 //        System.out.println("request Parameter customerName: "+customerName);
 //        System.out.println("=============================================");
 
-        return ResultData.success("getGatewayFilter 过滤器 test： "+result+" \t "+ DateUtil.now());
+        return ResultData.success("getGatewayFilter 过滤器 test： "+result+" \t "
+                +"header "+header+" \t "+ DateUtil.now());
     }
 }

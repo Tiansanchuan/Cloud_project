@@ -33,7 +33,12 @@ spring:
           uri: lb://cloud-payment-service                #匹配后提供服务的路由地址
           predicates:
             - Path=/pay/gateway/filter/**              # 断言，路径相匹配的进行路由
-          filters:
+#          filters:
+#            - My=
+        - id: Auth
+          uri: lb://cloud-auth-service
+          predicates:
+            - Path=/oauth/**
 #            请求头相关操作
 #            - AddRequestHeader=X-Request1,Value1  # 添加请求头kv，若一头含有多参则重写一行设置
 #            - AddRequestHeader=X-Request2,Value2
@@ -50,3 +55,7 @@ spring:
 #            - PrefixPath=/pay # 添加路径前缀
 #            - SetPath=/pay/gateway/{segment}  # {segment}表示占位符，写abc也行但要和path中一致path=/{segment}/XX/asdf/asd
 #            - RedirectTo=302, http://localhost:9527 #302表示重定向，  客户端会自动跳转
+security:
+  whitelist: /oauth/token
+  jwt:
+    secret: "CHANGE_ME_TO_A_LONG_RANDOM_SECRET_AT_LEAST_32_CHARS"
